@@ -6,4 +6,8 @@ public class PowerUp {
 
     public Vector2 position;
 
+    public PowerUp(Vector2 position) {
+        this.position = position;
+    }
+
 }

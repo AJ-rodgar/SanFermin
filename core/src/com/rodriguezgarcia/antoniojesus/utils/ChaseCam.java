@@ -8,6 +8,11 @@ public class ChaseCam {
     public Camera camera;
     public Runner target;
 
+    public ChaseCam(Camera camera, Runner runner) {
+        this.camera = camera;
+        target = runner;
+    }
+
     public void update(){
         camera.position.x = target.getPosition().x;
         camera.position.y = target.getPosition().y;

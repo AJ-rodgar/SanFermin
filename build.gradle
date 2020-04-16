@@ -1,5 +1,5 @@
 buildscript {
-    
+
 
     repositories {
         mavenLocal()
@@ -13,8 +13,6 @@ buildscript {
         classpath 'org.wisepersist:gwt-gradle-plugin:1.0.9'
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.8'
-        
-
     }
 }
 
@@ -117,6 +115,9 @@ project(":core") {
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        
+
+        compile ('com.googlecode.json-simple:json-simple:1.1.1') {
+            exclude module: 'junit'
+        }
     }
 }
