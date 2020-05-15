@@ -79,6 +79,13 @@ public class Level {
             p.render(batch);
         }
 
+        Obstacle o = new Obstacle(500, 55, 35,32);
+        o.render(batch);
+
+        PowerUp p = new PowerUp(new Vector2(500, 60));
+        p.render(batch);
+
+        bullring.render(batch);
         batch.end();
     }
 

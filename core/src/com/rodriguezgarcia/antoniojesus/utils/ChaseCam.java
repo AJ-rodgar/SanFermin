@@ -14,8 +14,8 @@ public class ChaseCam {
     }
 
     public void update(){
-        camera.position.x = target.getPosition().x;
-        camera.position.y = target.getPosition().y;
+        camera.position.x = target.getPosition().x-75;
+        camera.position.y = target.getPosition().y+133;
     }
 
 }

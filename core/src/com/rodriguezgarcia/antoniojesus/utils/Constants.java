@@ -12,11 +12,11 @@ public class Constants {
     public static final String TEXTURE_ATLAS = "images/sanfermin.atlas";
 
     //Runner Constants
-    public static final Vector2 RUNNER_EYE_POSITION = new Vector2(12,5);
+    public static final Vector2 RUNNER_EYE_POSITION = new Vector2(250,0);
     public static final float RUNNER_EYE_HEIGHT = 16.0f;
     public static final float RUNNER_STANCE_WIDTH = 19.0f;
     public static final float RUNNER_HEIGHT = 23.0f;
-    public static final float RUNNER_MOVE_SPEED = 20;
+    public static final float RUNNER_MOVE_SPEED = 30;
 
     public static final String RUNNING_1 = "trump1";
     public static final String RUNNING_2 = "trump2";
@@ -24,7 +24,7 @@ public class Constants {
     public static final String RUNNING_4 = "trump4";
     public static final String RUNNING_5 = "trump5";
     public static final String RUNNING_6 = "trump6";
-    public static final float WALK_LOOP_DURATION = 15f;
+    public static final float WALK_LOOP_DURATION = 2.5f;
 
     public static final float JUMP_SPEED = 200;
     public static final float MAX_JUMP_DURATION = 0.1f;
@@ -48,12 +48,12 @@ public class Constants {
 
     //
     public static final String BULLRING = "bullring";
-    public static final Vector2 BULLRING_CENTER = new Vector2(0, 0);
+    public static final Vector2 BULLRING_CENTER = new Vector2(200, 0);
     public static final float BULLRING_RADIUS = 85;
 
     //
     public static final Vector2 BULL_CENTER = new Vector2(0,0);
-    public static final float BULL_MOVE_SPEED = 20;
+    public static final float BULL_MOVE_SPEED = 40;
     public static final String BULL_1 = "bull1";
     public static final String BULL_2 = "bull2";
     public static final String BULL_3 = "bull3";

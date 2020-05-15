@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.rodriguezgarcia.antoniojesus.Level;
 import com.rodriguezgarcia.antoniojesus.entities.Bull;
 import com.rodriguezgarcia.antoniojesus.entities.Bullring;
+import com.rodriguezgarcia.antoniojesus.entities.Obstacle;
 import com.rodriguezgarcia.antoniojesus.entities.Platform;
 import com.rodriguezgarcia.antoniojesus.entities.PowerUp;
 import com.rodriguezgarcia.antoniojesus.entities.Runner;
@@ -83,14 +84,23 @@ public class LevelLoader {
 
             } else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.BULLRING)) {
 
-                final Vector2 bullringPosition = imagePosition.add(Constants.BULLRING_CENTER);
-                level.setBullring(new Bullring(bullringPosition));
+                //final Vector2 bullringPosition = imagePosition.add(Constants.BULLRING_CENTER);
+                //level.setBullring(new Bullring(bullringPosition));
+                level.setBullring(new Bullring(new Vector2(1000, 23)));
 
             } else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.BULL_1)) {
 
                 final Vector2 bullPosition = imagePosition.add(Constants.BULL_CENTER);
                 level.setBull(new Bull(bullPosition));
 
+            } else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.OBSTACLE_SPRITE)) {
+                Vector2 bottomLeft = extractXY(item);
+
+                float height = 20;
+                float width = 20;
+                Obstacle obstacle = new Obstacle(bottomLeft.x, bottomLeft.y + height, width, height);
+
+                level.getObstacles().add(obstacle);
             }
         }
     }
@@ -104,10 +114,14 @@ public class LevelLoader {
             final JSONObject platformObject = (JSONObject) object;
             Vector2 bottomLeft = extractXY(platformObject);
 
-            final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
-            final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
+            //final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
+            //final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
 
-            final Platform platform = new Platform(bottomLeft.x, bottomLeft.y + height, width, height);
+            final float width = 1500;
+            final float height = 23;
+
+
+            final Platform platform = new Platform(0, 0 + height, width, height);
             platformArray.add(platform);
 
         }
