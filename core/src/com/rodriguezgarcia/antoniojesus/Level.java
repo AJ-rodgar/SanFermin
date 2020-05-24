@@ -43,10 +43,10 @@ public class Level {
             gameover = true;
         } else if (runner.getPosition().dst(bullring.position) < Constants.BULLRING_RADIUS){
             victory = true;
+        } else {
+            runner.update(delta, platforms);
+            bull.update(delta);
         }
-        runner.update(delta, platforms);
-        bull.update(delta);
-
     }
 
     public Runner getRunner() {
@@ -79,11 +79,19 @@ public class Level {
             p.render(batch);
         }
 
-        Obstacle o = new Obstacle(500, 55, 35,32);
-        o.render(batch);
+        //Obstacle o = new Obstacle(500, 55, 35,32);
+        //o.render(batch);
 
-        PowerUp p = new PowerUp(new Vector2(500, 60));
-        p.render(batch);
+        for (Obstacle o : obstacles) {
+            o.render(batch);
+        }
+
+        //PowerUp p = new PowerUp(new Vector2(500, 60));
+        //p.render(batch);
+
+        for (PowerUp p : powerUps) {
+            p.render(batch);
+        }
 
         bullring.render(batch);
         batch.end();

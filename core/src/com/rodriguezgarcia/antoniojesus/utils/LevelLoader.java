@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 public class LevelLoader {
 
-    public static Level load(String path) {
+    /*public static Level load(String path) {
 
         Level level = new Level();
 
@@ -48,8 +48,6 @@ public class LevelLoader {
         return level;
 
     }
-
-
 
     private static Vector2 extractXY(JSONObject object) {
 
@@ -145,5 +143,35 @@ public class LevelLoader {
         });
 
         level.getPlatforms().addAll(platformArray);
+    }*/
+
+    public static Level load(Enums.Difficulty difficulty) {
+        Level level = new Level();
+
+        switch (difficulty){
+            case EASY:
+                level.setRunner(new Runner(new Vector2(200,0),level));
+                level.setBull(new Bull(new Vector2(0,0)));
+                level.setBullring(new Bullring(new Vector2(2000,0)));
+                level.getPlatforms().add(new Platform(0, 25, 3000,25));
+
+                int obstacleStart = 500;
+                while (obstacleStart < 2000) {
+                    level.getObstacles().add(new Obstacle(obstacleStart, 57, 35,32));
+                    obstacleStart += 300;
+                }
+
+                level.getPowerUps().add(new PowerUp(new Vector2(1100, 64)));
+
+                break;
+            case MEDIUM:
+
+                break;
+            case HARD:
+
+                break;
+        }
+
+        return level;
     }
 }
