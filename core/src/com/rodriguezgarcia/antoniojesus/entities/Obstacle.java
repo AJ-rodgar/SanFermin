@@ -6,8 +6,6 @@ import com.rodriguezgarcia.antoniojesus.utils.Assets;
 
 public class Obstacle {
 
-    public Vector2 position;
-
     public final float top;
     public final float bottom;
     public final float left;

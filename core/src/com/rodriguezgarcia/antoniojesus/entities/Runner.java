@@ -19,7 +19,6 @@ import com.rodriguezgarcia.antoniojesus.utils.Utils;
 
 public class Runner {
 
-    public SanFerminGame game;
     private Level level;
 
     private Vector2 spawnPosition;
@@ -43,6 +42,7 @@ public class Runner {
     }
 
     public void render(SpriteBatch batch) {
+        run();
         if(jumpState == Enums.JumpState.FALLING){
             region =  Assets.instance.runnerAssets.standing;
         }else if ( jumpState != Enums.JumpState.GROUNDED && jumpState != Enums.JumpState.JUMPING) {
@@ -50,7 +50,7 @@ public class Runner {
             startJump();
         }else if(jumpState == Enums.JumpState.GROUNDED){
             region = (TextureRegion) animation.getKeyFrame(runtime,true);
-            run();
+
         }
 
 
@@ -87,6 +87,7 @@ public class Runner {
             velocity.y = 0;
         }
 
+        /*
         if (jumpState != Enums.JumpState.JUMPING) {
 
             for (Platform platform : platforms) {
@@ -97,7 +98,7 @@ public class Runner {
                     position.y = platform.top + Constants.RUNNER_EYE_HEIGHT;
                 }
             }
-        }
+        }*/
 
         Rectangle runnerBounds = new Rectangle(
                 position.x - Constants.RUNNER_STANCE_WIDTH,

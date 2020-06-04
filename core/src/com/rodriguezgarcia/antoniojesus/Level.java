@@ -44,9 +44,11 @@ public class Level {
         } else if (runner.getPosition().dst(bullring.position) < Constants.BULLRING_RADIUS){
             victory = true;
         } else {
-            runner.update(delta, platforms);
-            bull.update(delta);
+
         }
+
+        runner.update(delta, platforms);
+        bull.update(delta);
     }
 
     public Runner getRunner() {
