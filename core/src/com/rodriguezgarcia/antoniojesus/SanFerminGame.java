@@ -7,15 +7,15 @@ public class SanFerminGame extends Game {
 
 	@Override
 	public void create() {
-		//showLevelScreen();
-		showSanFerminScreen();
+		showLevelScreen();
+		//showSanFerminScreen();
 	}
 
 	public void showLevelScreen() {
 		setScreen(new LevelScreen(this));
 	}
 
-	public void showSanFerminScreen(){
-		setScreen(new SanFerminScreen(this, Enums.Difficulty.EASY));
+	public void showSanFerminScreen(Enums.Difficulty difficulty){
+		setScreen(new SanFerminScreen(this, difficulty));
 	}
 }

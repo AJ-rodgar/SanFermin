@@ -1,6 +1,7 @@
 package com.rodriguezgarcia.antoniojesus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,11 +9,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rodriguezgarcia.antoniojesus.utils.Constants;
+import com.rodriguezgarcia.antoniojesus.utils.Enums;
 
-public class LevelScreen implements Screen {
+public class LevelScreen extends InputAdapter implements Screen {
 
     SanFerminGame game;
     FitViewport viewport;
@@ -29,7 +32,8 @@ public class LevelScreen implements Screen {
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
 
-        viewport = new FitViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        viewport = new FitViewport(Constants.DIFFICULTY_WORLD_SIZE, Constants.DIFFICULTY_WORLD_SIZE);
+        Gdx.input.setInputProcessor(this);
 
         font = new BitmapFont();
 
@@ -39,7 +43,8 @@ public class LevelScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        /*viewport.apply();
+
+        viewport.apply();
         Gdx.gl.glClearColor(Constants.BACKGROUND_COLOR.r, Constants.BACKGROUND_COLOR.g, Constants.BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -69,7 +74,7 @@ public class LevelScreen implements Screen {
         final GlyphLayout hardLayout = new GlyphLayout(font, Constants.HARD_LABEL);
         font.draw(batch, Constants.HARD_LABEL, Constants.HARD_CENTER.x, Constants.HARD_CENTER.y + hardLayout.height / 2, 0, Align.center, false);
 
-        batch.end();*/
+        batch.end();
     }
 
     @Override
@@ -97,5 +102,23 @@ public class LevelScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
+
+
+        if (worldTouch.dst(Constants.EASY_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+            game.showSanFerminScreen(Enums.Difficulty.EASY);
+        } else if (worldTouch.dst(Constants.MEDIUM_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+
+            game.showSanFerminScreen(Enums.Difficulty.MEDIUM);
+        } else if (worldTouch.dst(Constants.HARD_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+
+            game.showSanFerminScreen(Enums.Difficulty.HARD);
+        }
+
+        return true;
     }
 }
