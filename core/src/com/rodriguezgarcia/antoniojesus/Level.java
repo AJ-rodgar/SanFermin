@@ -41,14 +41,12 @@ public class Level {
     public void update(float delta) {
         if (runner.isCatched()) {
             gameover = true;
-        } else if (runner.getPosition().dst(bullring.position) < Constants.BULLRING_RADIUS){
+        } else if (runner.getPosition().dst(bullring.position) < Constants.BULLRING_RADIUS || runner.getPosition().x > bullring.position.x){
             victory = true;
         } else {
-
+            runner.update(delta);
+            bull.update(delta);
         }
-
-        runner.update(delta, platforms);
-        bull.update(delta);
     }
 
     public Runner getRunner() {
@@ -81,15 +79,9 @@ public class Level {
             p.render(batch);
         }
 
-        //Obstacle o = new Obstacle(500, 55, 35,32);
-        //o.render(batch);
-
         for (Obstacle o : obstacles) {
             o.render(batch);
         }
-
-        //PowerUp p = new PowerUp(new Vector2(500, 60));
-        //p.render(batch);
 
         for (PowerUp p : powerUps) {
             p.render(batch);

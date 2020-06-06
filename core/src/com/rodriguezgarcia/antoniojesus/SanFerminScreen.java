@@ -29,6 +29,8 @@ public class SanFerminScreen extends ScreenAdapter {
     public VictoryOverlay victoryOverlay;
     public GameOverOverlay gameOverOverlay;
 
+    int porcentaje;
+
 
     public SanFerminScreen(SanFerminGame game, Enums.Difficulty difficulty){
         this.game = game;
@@ -46,7 +48,8 @@ public class SanFerminScreen extends ScreenAdapter {
         chaseCam = new ChaseCam(viewport.getCamera(), level.getRunner());
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
-        hud = new HUD();
+        hud = new HUD(viewport);
+
     }
 
     @Override
@@ -68,7 +71,8 @@ public class SanFerminScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         level.render(batch);
-        hud.render(batch,level.getRunner().getPosition().x);
+
+        hud.render(batch, Math.round(level.getBullring().position.x - Constants.BULLRING_RADIUS - level.getRunner().getPosition().x), Math.round(level.getRunner().getPosition().x - level.getBull().getPosition().x - Constants.ENEMY_COLLISION_RADIUS - 9));
 
         renderLevelEndOverlays(batch);
     }

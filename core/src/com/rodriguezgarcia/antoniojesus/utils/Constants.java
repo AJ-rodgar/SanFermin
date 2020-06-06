@@ -11,6 +11,11 @@ public class Constants {
     public static final float GRAVITY = 10;
     public static final String TEXTURE_ATLAS = "images/sanfermin.atlas";
 
+    //HUD
+    public static final float HUD_MARGIN = 20;
+    public static final String HUD_DISTANCE_LABEL = "Distance: ";
+    public static final String HUD_BULL_LABEL = "Bull: ";
+
     //Runner Constants
     public static final Vector2 RUNNER_EYE_POSITION = new Vector2(250,0);
     public static final float RUNNER_EYE_HEIGHT = 40f;
@@ -26,8 +31,8 @@ public class Constants {
     public static final String RUNNING_6 = "trump6";
     public static final float WALK_LOOP_DURATION = 5f;
 
-    public static final float JUMP_SPEED = 180;
-    public static final float MAX_JUMP_DURATION = 0.4f;
+    public static final float JUMP_SPEED = 100;
+    public static final float MAX_JUMP_DURATION = 0.8f;
 
     //PowerUp
     public static final String POWERUP_SPRITE = "chilito";
@@ -49,11 +54,10 @@ public class Constants {
     //
     public static final String BULLRING = "bullring";
     public static final Vector2 BULLRING_CENTER = new Vector2(200, 0);
-    public static final float BULLRING_RADIUS = 85;
+    public static final float BULLRING_RADIUS = 12;
 
     //
-    public static final Vector2 BULL_CENTER = new Vector2(0,0);
-    public static final float BULL_MOVE_SPEED = 65;
+    public static final float BULL_MOVE_SPEED = 61;
     public static final String BULL_1 = "bull1";
     public static final String BULL_2 = "bull2";
     public static final String BULL_3 = "bull3";
@@ -63,17 +67,8 @@ public class Constants {
     public static final String BULL_7 = "bull7";
     public static final String BULL_8 = "bull8";
 
-    //JSON
-    public static final String LEVEL_COMPOSITE = "composite";
-    public static final String LEVEL_9PATCHES = "sImage9patchs";
-    public static final String LEVEL_IMAGES = "sImages";
-    public static final String LEVEL_IMAGENAME_KEY = "imageName";
-    public static final String LEVEL_X_KEY = "x";
-    public static final String LEVEL_Y_KEY = "y";
-    public static final String LEVEL_WIDTH_KEY = "width";
-    public static final String LEVEL_HEIGHT_KEY = "height";
+    public static final float ENEMY_COLLISION_RADIUS = 60;
 
-    public static final float ENEMY_COLLISION_RADIUS = 15;
 
 
 }

@@ -12,13 +12,35 @@ import com.rodriguezgarcia.antoniojesus.utils.Utils;
 
 public class HUD {
 
-    public HUD() {
+    public final Viewport viewport;
+    final BitmapFont font;
+
+    public HUD(ExtendViewport viewport) {
+
+        //this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
+        this.viewport = viewport;
+        font = new BitmapFont();
+        font.getData().setScale(1);
 
     }
 
-    public void render(SpriteBatch batch, float distance) {
+    public void render(SpriteBatch batch, float distance, float bull) {
 
+        viewport.apply();
+        batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.begin();
 
+        if (distance < 0) {
+            distance = 0;
+        }
+        final String hudString =
+
+                Constants.HUD_DISTANCE_LABEL + distance + "\n" +
+                        Constants.HUD_BULL_LABEL + bull;
+
+        font.draw(batch, hudString, Constants.HUD_MARGIN, viewport.getWorldHeight() - Constants.HUD_MARGIN);
+
+        batch.end();
 
     }
 }

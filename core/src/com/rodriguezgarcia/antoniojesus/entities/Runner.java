@@ -74,7 +74,7 @@ public class Runner {
         animation = Assets.instance.runnerAssets.walkingRightAnimation;
     }
 
-    public void update(float delta, Array<Platform> platforms){
+    public void update(float delta){
 
         lastFramePosition.set(position);
         velocity.y -= Constants.GRAVITY;
@@ -86,19 +86,6 @@ public class Runner {
             position.y = Constants.RUNNER_EYE_HEIGHT;
             velocity.y = 0;
         }
-
-        /*
-        if (jumpState != Enums.JumpState.JUMPING) {
-
-            for (Platform platform : platforms) {
-                if (landedOnPlatform(platform)) {
-                    jumpState = Enums.JumpState.GROUNDED;
-                    velocity.y = 0;
-                    velocity.x = 0;
-                    position.y = platform.top + Constants.RUNNER_EYE_HEIGHT;
-                }
-            }
-        }*/
 
         Rectangle runnerBounds = new Rectangle(
                 position.x - Constants.RUNNER_STANCE_WIDTH,
@@ -116,8 +103,7 @@ public class Runner {
             );
 
             if (runnerBounds.overlaps(obstacleBounds)){
-                level.gameover = true;
-                break;
+                velocity.x -= 20;
             }
         }
 
