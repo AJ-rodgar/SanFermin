@@ -40,7 +40,7 @@ public class Constants {
 
     //
     public static final String FONT_FILE = "font/header.fnt";
-    public static final String VICTORY_MESSAGE = "OLÉ!";
+    public static final String VICTORY_MESSAGE = "OLE!";
     public static final String GAME_OVER_MESSAGE = "TOO SLOW, TURTLE";
 
     //

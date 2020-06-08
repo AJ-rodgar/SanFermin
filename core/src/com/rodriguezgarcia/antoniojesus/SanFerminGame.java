@@ -8,7 +8,6 @@ public class SanFerminGame extends Game {
 	@Override
 	public void create() {
 		showLevelScreen();
-		//showSanFerminScreen();
 	}
 
 	public void showLevelScreen() {

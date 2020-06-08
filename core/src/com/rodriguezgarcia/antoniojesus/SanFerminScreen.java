@@ -29,8 +29,6 @@ public class SanFerminScreen extends ScreenAdapter {
     public VictoryOverlay victoryOverlay;
     public GameOverOverlay gameOverOverlay;
 
-    int porcentaje;
-
 
     public SanFerminScreen(SanFerminGame game, Enums.Difficulty difficulty){
         this.game = game;
@@ -46,8 +44,8 @@ public class SanFerminScreen extends ScreenAdapter {
         viewport = new ExtendViewport(Constants.WORLD_SIZE,Constants.WORLD_SIZE);
         level = LevelLoader.load(difficulty);
         chaseCam = new ChaseCam(viewport.getCamera(), level.getRunner());
-        victoryOverlay = new VictoryOverlay();
-        gameOverOverlay = new GameOverOverlay();
+        victoryOverlay = new VictoryOverlay(viewport);
+        gameOverOverlay = new GameOverOverlay(viewport);
         hud = new HUD(viewport);
 
     }

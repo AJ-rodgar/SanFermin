@@ -13,8 +13,8 @@ public class GameOverOverlay {
     public final Viewport viewport;
     final BitmapFont font;
 
-    public GameOverOverlay() {
-        this.viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+    public GameOverOverlay(ExtendViewport viewport) {
+        this.viewport = viewport;
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1);
@@ -27,7 +27,7 @@ public class GameOverOverlay {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
+        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() - viewport.getWorldHeight()/3, 0, Align.center, false);
 
         batch.end();
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.rodriguezgarcia.antoniojesus.Level;
 import com.rodriguezgarcia.antoniojesus.SanFerminGame;
@@ -119,6 +120,26 @@ public class Runner {
                     break;
             }
         }
+
+        DelayedRemovalArray<PowerUp> powerups = level.getPowerUps();
+
+        powerups.begin();
+        for (int i = 0; i < powerups.size; i++) {
+
+            PowerUp powerup = powerups.get(i);
+            Rectangle powerupBounds = new Rectangle(
+                    powerup.position.x - Constants.POWERUP_CENTER.x,
+                    powerup.position.y - Constants.POWERUP_CENTER.y,
+                    Assets.instance.powerUpAssets.powerup.getRegionWidth(),
+                    Assets.instance.powerUpAssets.powerup.getRegionHeight()
+            );
+
+            if (runnerBounds.overlaps(powerupBounds)) {
+                level.getRunner().setVelocity(new Vector2(level.getRunner().getVelocity().x + 10, level.getRunner().getVelocity().y));
+                powerups.removeIndex(i);
+            }
+        }
+        powerups.end();
     }
 
     public Vector2 getPosition() {
