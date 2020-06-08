@@ -5,7 +5,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rodriguezgarcia.antoniojesus.overlays.GameOverOverlay;
 import com.rodriguezgarcia.antoniojesus.overlays.HUD;
@@ -15,7 +14,6 @@ import com.rodriguezgarcia.antoniojesus.utils.ChaseCam;
 import com.rodriguezgarcia.antoniojesus.utils.Constants;
 import com.rodriguezgarcia.antoniojesus.utils.Enums;
 import com.rodriguezgarcia.antoniojesus.utils.LevelLoader;
-import com.rodriguezgarcia.antoniojesus.utils.Utils;
 
 public class SanFerminScreen extends ScreenAdapter {
 
@@ -44,9 +42,9 @@ public class SanFerminScreen extends ScreenAdapter {
         viewport = new ExtendViewport(Constants.WORLD_SIZE,Constants.WORLD_SIZE);
         level = LevelLoader.load(difficulty);
         chaseCam = new ChaseCam(viewport.getCamera(), level.getRunner());
-        victoryOverlay = new VictoryOverlay(viewport);
-        gameOverOverlay = new GameOverOverlay(viewport);
-        hud = new HUD(viewport);
+        victoryOverlay = new VictoryOverlay();
+        gameOverOverlay = new GameOverOverlay();
+        hud = new HUD();
 
     }
 
@@ -78,9 +76,9 @@ public class SanFerminScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height,true);
-        //hud.getViewport().update(width,height,true);
-        //victoryOverlay.getViewport().update(width,height,true);
-        //gameOverOverlay.getViewport().update(width,height,true);
+        hud.getViewport().update(width,height,true);
+        victoryOverlay.getViewport().update(width,height,true);
+        gameOverOverlay.getViewport().update(width,height,true);
         level.getViewport().update(width,height,true);
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getRunner();

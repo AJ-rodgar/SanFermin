@@ -13,8 +13,8 @@ public class VictoryOverlay {
     public final Viewport viewport;
     final BitmapFont font;
 
-    public VictoryOverlay(ExtendViewport viewport) {
-        this.viewport = viewport;
+    public VictoryOverlay() {
+        this.viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1);
@@ -29,5 +29,9 @@ public class VictoryOverlay {
         font.draw(batch, Constants.VICTORY_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() - viewport.getWorldHeight()/3, 0, Align.center, false);
         batch.end();
 
+    }
+
+    public Viewport getViewport() {
+        return viewport;
     }
 }

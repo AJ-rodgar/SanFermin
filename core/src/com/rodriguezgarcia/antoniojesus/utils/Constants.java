@@ -12,6 +12,7 @@ public class Constants {
     public static final String TEXTURE_ATLAS = "images/sanfermin.atlas";
 
     //HUD
+    public static final float HUD_VIEWPORT_SIZE = 300;
     public static final float HUD_MARGIN = 20;
     public static final String HUD_DISTANCE_LABEL = "Distance: ";
     public static final String HUD_BULL_LABEL = "Bull: ";

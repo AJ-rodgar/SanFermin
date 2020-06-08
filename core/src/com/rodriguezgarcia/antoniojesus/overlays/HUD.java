@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.rodriguezgarcia.antoniojesus.utils.Assets;
+import com.rodriguezgarcia.antoniojesus.utils.ChaseCam;
 import com.rodriguezgarcia.antoniojesus.utils.Constants;
 import com.rodriguezgarcia.antoniojesus.utils.Utils;
 
@@ -15,10 +16,10 @@ public class HUD {
     public final Viewport viewport;
     final BitmapFont font;
 
-    public HUD(ExtendViewport viewport) {
+    public HUD() {
 
-        //this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
-        this.viewport = viewport;
+        this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
+        //this.viewport = viewport;
         font = new BitmapFont();
         font.getData().setScale(1);
 
@@ -42,5 +43,9 @@ public class HUD {
 
         batch.end();
 
+    }
+
+    public Viewport getViewport() {
+        return viewport;
     }
 }

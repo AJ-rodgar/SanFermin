@@ -13,8 +13,8 @@ public class GameOverOverlay {
     public final Viewport viewport;
     final BitmapFont font;
 
-    public GameOverOverlay(ExtendViewport viewport) {
-        this.viewport = viewport;
+    public GameOverOverlay() {
+        this.viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1);
@@ -31,5 +31,9 @@ public class GameOverOverlay {
 
         batch.end();
 
+    }
+
+    public Viewport getViewport() {
+        return viewport;
     }
 }
