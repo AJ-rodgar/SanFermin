@@ -60,7 +60,7 @@ public class Assets implements Disposable, AssetErrorListener {
             standing = atlas.findRegion(Constants.RUNNING_1);
             jumpingRight = atlas.findRegion(Constants.RUNNING_4);
 
-            Array<TextureAtlas.AtlasRegion> walkingRightFrames = new Array<TextureAtlas.AtlasRegion>();
+            Array<TextureAtlas.AtlasRegion> walkingRightFrames = new Array<>();
 
             walkingRightFrames.add(atlas.findRegion(Constants.RUNNING_1));
             walkingRightFrames.add(atlas.findRegion(Constants.RUNNING_2));

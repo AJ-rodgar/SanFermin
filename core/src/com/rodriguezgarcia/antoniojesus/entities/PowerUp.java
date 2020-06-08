@@ -31,7 +31,7 @@ public class PowerUp {
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(position.x,position.y, 40,30);
+        shapeRenderer.rect(position.x,position.y, 30,25);
         shapeRenderer.end();
 
         batch.begin();

@@ -18,10 +18,10 @@ public class Constants {
     public static final String HUD_BULL_LABEL = "Bull: ";
 
     //Runner Constants
-    public static final Vector2 RUNNER_EYE_POSITION = new Vector2(250,0);
+    public static final Vector2 RUNNER_EYE_POSITION = new Vector2(0,0);
     public static final float RUNNER_EYE_HEIGHT = 40f;
-    public static final float RUNNER_STANCE_WIDTH = 10f;
-    public static final float RUNNER_HEIGHT = 23.0f;
+    public static final float RUNNER_STANCE_WIDTH = 40f;
+    public static final float RUNNER_HEIGHT = 50f;
     public static final float RUNNER_MOVE_SPEED = 100;
 
     public static final String RUNNING_1 = "trump1";
@@ -58,6 +58,9 @@ public class Constants {
     public static final float BULLRING_RADIUS = 170;
 
     //
+    public static final Vector2 BULL_EYE_POSITION = new Vector2(0,0);
+    public static final float BULL_STANCE_WIDTH = 50f;
+    public static final float BULL_HEIGHT = 65f;
     public static final float BULL_MOVE_SPEED = 100;
     public static final String BULL_1 = "bull1";
     public static final String BULL_2 = "bull2";

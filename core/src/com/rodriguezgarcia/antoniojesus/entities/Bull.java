@@ -72,7 +72,7 @@ public class Bull {
                 batch,
                 region,
                 position,
-                Constants.RUNNER_EYE_POSITION);
+                Constants.BULL_EYE_POSITION);
 
 
         batch.end();
@@ -80,7 +80,7 @@ public class Bull {
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(position.x,position.y, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
+        shapeRenderer.rect(position.x + Constants.BULL_STANCE_WIDTH ,position.y + 10, Constants.BULL_STANCE_WIDTH,Constants.BULL_HEIGHT);
         shapeRenderer.end();
 
         batch.begin();

@@ -36,9 +36,9 @@ public class Obstacle {
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(left,
+        shapeRenderer.rect(left + 6,
                 bottom,
-                right - left,
+                (right - left) * 2/3,
                 top - bottom);
         shapeRenderer.end();
 

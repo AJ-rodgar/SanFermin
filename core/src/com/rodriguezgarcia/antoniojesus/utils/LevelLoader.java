@@ -19,7 +19,7 @@ public class LevelLoader {
         switch (difficulty){
             case EASY:
 
-                level.setRunner(new Runner(new Vector2(200,0),level));
+                level.setRunner(new Runner(new Vector2(200,50),level));
                 level.setBull(new Bull(new Vector2(0,35),level));
                 level.setBullring(new Bullring(new Vector2(2000,50),level));
                 level.getPlatforms().add(new Platform(-500, 50, 3000,70));

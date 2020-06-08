@@ -72,7 +72,7 @@ public class Runner {
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(position.x,position.y, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
+        shapeRenderer.rect(position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,position.y + 10, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
         shapeRenderer.end();
 
         batch.begin();
@@ -101,8 +101,8 @@ public class Runner {
         }
 
         Rectangle runnerBounds = new Rectangle(
-                position.x,
-                position.y,
+                position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,
+                position.y + 10,
                 Constants.RUNNER_STANCE_WIDTH,
                 Constants.RUNNER_HEIGHT
         );
@@ -127,15 +127,15 @@ public class Runner {
 
             Obstacle obstacle = obstacles.get(i);
             Rectangle obstacleBounds = new Rectangle(
-                    obstacle.left,
+                    obstacle.left + 6,
                     obstacle.bottom,
-                    obstacle.right - obstacle.left,
+                    (obstacle.right - obstacle.left) * 2/3,
                     obstacle.top - obstacle.bottom
             );
 
             if (runnerBounds.overlaps(obstacleBounds)) {
-                //level.getRunner().obstacle();
-                //obstacles.removeIndex(i);
+                level.getRunner().obstacle();
+                obstacles.removeIndex(i);
             }
         }
         obstacles.end();
@@ -149,8 +149,8 @@ public class Runner {
             Rectangle powerupBounds = new Rectangle(
                     powerup.position.x,
                     powerup.position.y,
-                    Assets.instance.powerUpAssets.powerup.getRegionWidth(),
-                    Assets.instance.powerUpAssets.powerup.getRegionHeight()
+                    30,
+                    25
             );
 
             if (runnerBounds.overlaps(powerupBounds)) {
@@ -180,8 +180,8 @@ public class Runner {
     public boolean isCatched(){
 
         Rectangle runnerBounds = new Rectangle(
-                position.x - Constants.RUNNER_STANCE_WIDTH,
-                position.y - Constants.RUNNER_EYE_HEIGHT,
+                position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,
+                position.y + 10,
                 Constants.RUNNER_STANCE_WIDTH,
                 Constants.RUNNER_HEIGHT
         );
@@ -189,10 +189,10 @@ public class Runner {
         Bull bull = level.getBull();
 
         Rectangle bullBounds = new Rectangle(
-                bull.getPosition().x - Constants.ENEMY_COLLISION_RADIUS,
-                bull.getPosition().y - Constants.ENEMY_COLLISION_RADIUS,
-                2 * Constants.ENEMY_COLLISION_RADIUS,
-                2 * Constants.ENEMY_COLLISION_RADIUS
+                bull.getPosition().x + Constants.BULL_STANCE_WIDTH,
+                bull.getPosition().y + 10,
+                Constants.BULL_STANCE_WIDTH,
+                Constants.BULL_HEIGHT
         );
 
         return runnerBounds.overlaps(bullBounds);
@@ -232,8 +232,8 @@ public class Runner {
 
     public boolean comeBullring() {
         Rectangle runnerBounds = new Rectangle(
-                position.x,
-                position.y,
+                position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,
+                position.y + 10,
                 Constants.RUNNER_STANCE_WIDTH,
                 Constants.RUNNER_HEIGHT
         );
