@@ -19,7 +19,7 @@ public class HUD {
     public HUD() {
 
         this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
-        //this.viewport = viewport;
+
         font = new BitmapFont();
         font.getData().setScale(1);
 

@@ -18,6 +18,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public BullringAssets bullringAssets;
     public PlatformAssets platformAssets;
     public PowerUpAssets powerUpAssets;
+    public OnscreenControlsAssets onscreenControlsAssets;
     private AssetManager assetManager;
 
     public void init(AssetManager assetManager) {
@@ -33,6 +34,7 @@ public class Assets implements Disposable, AssetErrorListener {
         bullringAssets = new BullringAssets(atlas);
         obstacleAssets = new ObstacleAssets(atlas);
         powerUpAssets = new PowerUpAssets(atlas);
+        onscreenControlsAssets = new OnscreenControlsAssets(atlas);
 
     }
 
@@ -136,5 +138,16 @@ public class Assets implements Disposable, AssetErrorListener {
         public PowerUpAssets(TextureAtlas atlas) {
             powerup = atlas.findRegion(Constants.POWERUP_SPRITE);
         }
+    }
+
+    public class OnscreenControlsAssets {
+
+        public final TextureAtlas.AtlasRegion jump;
+
+        public OnscreenControlsAssets(TextureAtlas atlas) {
+            jump = atlas.findRegion(Constants.JUMP_BUTTON);
+        }
+
+
     }
 }

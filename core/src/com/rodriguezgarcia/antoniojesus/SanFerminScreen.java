@@ -1,5 +1,6 @@
 package com.rodriguezgarcia.antoniojesus;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rodriguezgarcia.antoniojesus.overlays.GameOverOverlay;
 import com.rodriguezgarcia.antoniojesus.overlays.HUD;
+import com.rodriguezgarcia.antoniojesus.overlays.OnScreenControls;
 import com.rodriguezgarcia.antoniojesus.overlays.VictoryOverlay;
 import com.rodriguezgarcia.antoniojesus.utils.Assets;
 import com.rodriguezgarcia.antoniojesus.utils.ChaseCam;
@@ -26,6 +28,7 @@ public class SanFerminScreen extends ScreenAdapter {
     public HUD hud;
     public VictoryOverlay victoryOverlay;
     public GameOverOverlay gameOverOverlay;
+    public OnScreenControls onScreenControls;
 
 
     public SanFerminScreen(SanFerminGame game, Enums.Difficulty difficulty){
@@ -45,7 +48,18 @@ public class SanFerminScreen extends ScreenAdapter {
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
         hud = new HUD();
+        onScreenControls = new OnScreenControls();
+        onScreenControls.runner = level.getRunner();
 
+        if (onMobile()) {
+            Gdx.input.setInputProcessor(onScreenControls);
+        }
+
+    }
+
+    private boolean onMobile() {
+        return Gdx.app.getType() == Application.ApplicationType.Android
+                || Gdx.app.getType() == Application.ApplicationType.iOS;
     }
 
     @Override
@@ -70,6 +84,10 @@ public class SanFerminScreen extends ScreenAdapter {
 
         hud.render(batch, Math.round(level.getBullring().position.x - Constants.BULLRING_RADIUS - level.getRunner().getPosition().x), Math.round(level.getRunner().getPosition().x - level.getBull().getPosition().x - Constants.ENEMY_COLLISION_RADIUS - 9));
 
+        if (onMobile()) {
+            onScreenControls.render(batch);
+        }
+
         renderLevelEndOverlays(batch);
     }
 
@@ -82,6 +100,8 @@ public class SanFerminScreen extends ScreenAdapter {
         level.getViewport().update(width,height,true);
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getRunner();
+        onScreenControls.viewport.update(width, height, true);
+        onScreenControls.recalculateButtonPositions();
     }
 
     private void renderLevelEndOverlays(SpriteBatch batch) {

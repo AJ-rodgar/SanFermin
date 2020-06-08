@@ -22,6 +22,9 @@ public class Runner {
 
     private Level level;
 
+    public boolean jumpButtonPressed;
+
+
     private Vector2 spawnPosition;
     private Vector2 position;
     private Vector2 velocity;
@@ -108,7 +111,7 @@ public class Runner {
             }
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) || jumpButtonPressed){
             switch (jumpState) {
                 case GROUNDED:
                     startJump();
