@@ -41,7 +41,7 @@ public class Level {
     public void update(float delta) {
         if (runner.isCatched()) {
             gameover = true;
-        } else if (runner.getPosition().dst(bullring.position) < Constants.BULLRING_RADIUS || runner.getPosition().x > bullring.position.x){
+        } else if (runner.comeBullring()){
             victory = true;
         } else {
             runner.update(delta);

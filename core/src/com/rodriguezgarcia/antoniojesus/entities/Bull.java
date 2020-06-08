@@ -1,11 +1,14 @@
 package com.rodriguezgarcia.antoniojesus.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.rodriguezgarcia.antoniojesus.Level;
 import com.rodriguezgarcia.antoniojesus.utils.Assets;
 import com.rodriguezgarcia.antoniojesus.utils.Constants;
 import com.rodriguezgarcia.antoniojesus.utils.Enums;
@@ -20,11 +23,16 @@ public class Bull {
     private Animation animation;
     private float runtime;
 
-    public Bull(Vector2 spawnPosition){
+    Level level;
+    ShapeRenderer shapeRenderer;
+
+    public Bull(Vector2 spawnPosition, Level level){
         this.spawnPosition = spawnPosition;
         position = new Vector2();
         velocity = new Vector2();
         init();
+        shapeRenderer = new ShapeRenderer();
+        this.level = level;
     }
 
     public void init(){
@@ -65,6 +73,17 @@ public class Bull {
                 region,
                 position,
                 Constants.RUNNER_EYE_POSITION);
+
+
+        batch.end();
+
+        shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(position.x,position.y, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
+        shapeRenderer.end();
+
+        batch.begin();
     }
 
     private void run() {

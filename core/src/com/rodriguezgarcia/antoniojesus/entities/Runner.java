@@ -2,9 +2,11 @@ package com.rodriguezgarcia.antoniojesus.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +26,7 @@ public class Runner {
 
     public boolean jumpButtonPressed;
 
+    ShapeRenderer shapeRenderer;
 
     private Vector2 spawnPosition;
     private Vector2 position;
@@ -42,11 +45,11 @@ public class Runner {
         position = new Vector2();
         velocity = new Vector2();
         lastFramePosition = new Vector2();
+        shapeRenderer = new ShapeRenderer();
         init();
     }
 
     public void render(SpriteBatch batch) {
-        run();
         if(jumpState == Enums.JumpState.FALLING){
             region =  Assets.instance.runnerAssets.standing;
         }else if ( jumpState != Enums.JumpState.GROUNDED && jumpState != Enums.JumpState.JUMPING) {
@@ -64,16 +67,22 @@ public class Runner {
                 position,
                 Constants.RUNNER_EYE_POSITION);
 
-    }
+        batch.end();
 
-    private void run() {
-        velocity.x = Constants.RUNNER_MOVE_SPEED;
+        shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(position.x,position.y, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
+        shapeRenderer.end();
+
+        batch.begin();
+
     }
 
     public void init(){
         position.set(spawnPosition);
         lastFramePosition.set(spawnPosition);
-        velocity.setZero();
+        velocity = new Vector2(Constants.RUNNER_MOVE_SPEED, 0);
         jumpState = Enums.JumpState.FALLING;
         animation = Assets.instance.runnerAssets.walkingRightAnimation;
     }
@@ -92,24 +101,11 @@ public class Runner {
         }
 
         Rectangle runnerBounds = new Rectangle(
-                position.x - Constants.RUNNER_STANCE_WIDTH,
-                position.y - Constants.RUNNER_EYE_HEIGHT,
+                position.x,
+                position.y,
                 Constants.RUNNER_STANCE_WIDTH,
                 Constants.RUNNER_HEIGHT
         );
-
-        for (Obstacle obstacle : level.getObstacles()){
-            Rectangle obstacleBounds = new Rectangle(
-                    obstacle.left - 1,
-                    obstacle.bottom-1,
-                    obstacle.right-obstacle.left-10,
-                    obstacle.top-obstacle.bottom-10
-            );
-
-            if (runnerBounds.overlaps(obstacleBounds)){
-                velocity.x -= 20;
-            }
-        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.UP) || jumpButtonPressed){
             switch (jumpState) {
@@ -124,6 +120,26 @@ public class Runner {
             }
         }
 
+        DelayedRemovalArray<Obstacle> obstacles = level.getObstacles();
+
+        obstacles.begin();
+        for (int i = 0; i < obstacles.size; i++) {
+
+            Obstacle obstacle = obstacles.get(i);
+            Rectangle obstacleBounds = new Rectangle(
+                    obstacle.left,
+                    obstacle.bottom,
+                    obstacle.right - obstacle.left,
+                    obstacle.top - obstacle.bottom
+            );
+
+            if (runnerBounds.overlaps(obstacleBounds)) {
+                //level.getRunner().obstacle();
+                //obstacles.removeIndex(i);
+            }
+        }
+        obstacles.end();
+
         DelayedRemovalArray<PowerUp> powerups = level.getPowerUps();
 
         powerups.begin();
@@ -131,14 +147,14 @@ public class Runner {
 
             PowerUp powerup = powerups.get(i);
             Rectangle powerupBounds = new Rectangle(
-                    powerup.position.x - Constants.POWERUP_CENTER.x,
-                    powerup.position.y - Constants.POWERUP_CENTER.y,
+                    powerup.position.x,
+                    powerup.position.y,
                     Assets.instance.powerUpAssets.powerup.getRegionWidth(),
                     Assets.instance.powerUpAssets.powerup.getRegionHeight()
             );
 
             if (runnerBounds.overlaps(powerupBounds)) {
-                level.getRunner().setVelocity(new Vector2(level.getRunner().getVelocity().x + 10, level.getRunner().getVelocity().y));
+                level.getRunner().powerUp();
                 powerups.removeIndex(i);
             }
         }
@@ -164,7 +180,7 @@ public class Runner {
     public boolean isCatched(){
 
         Rectangle runnerBounds = new Rectangle(
-                position.x - Constants.RUNNER_STANCE_WIDTH / 2,
+                position.x - Constants.RUNNER_STANCE_WIDTH,
                 position.y - Constants.RUNNER_EYE_HEIGHT,
                 Constants.RUNNER_STANCE_WIDTH,
                 Constants.RUNNER_HEIGHT
@@ -206,21 +222,31 @@ public class Runner {
         }
     }
 
-    boolean landedOnPlatform(Platform platform) {
-        boolean leftFootIn = false;
-        boolean rightFootIn = false;
-        boolean straddle = false;
+    private void obstacle(){
+        velocity.x -= 10;
+    }
 
-        if (lastFramePosition.y - Constants.RUNNER_EYE_HEIGHT >= platform.top &&
-                position.y - Constants.RUNNER_EYE_HEIGHT < platform.top) {
+    private void powerUp(){
+        velocity.x += 15;
+    }
 
-            float leftFoot = position.x - Constants.RUNNER_STANCE_WIDTH / 2;
-            float rightFoot = position.x + Constants.RUNNER_STANCE_WIDTH / 2;
+    public boolean comeBullring() {
+        Rectangle runnerBounds = new Rectangle(
+                position.x,
+                position.y,
+                Constants.RUNNER_STANCE_WIDTH,
+                Constants.RUNNER_HEIGHT
+        );
 
-            leftFootIn = (platform.left < leftFoot && platform.right > leftFoot);
-            rightFootIn = (platform.left < rightFoot && platform.right > rightFoot);
-            straddle = (platform.left > leftFoot && platform.right < rightFoot);
-        }
-        return leftFootIn || rightFootIn || straddle;
+        Bullring bullring = level.getBullring();
+
+        Rectangle bullBounds = new Rectangle(
+                bullring.position.x,
+                bullring.position.y,
+                Constants.BULLRING_RADIUS,
+                Constants.BULLRING_RADIUS
+        );
+
+        return runnerBounds.overlaps(bullBounds);
     }
 }

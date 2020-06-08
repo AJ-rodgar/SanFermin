@@ -20,9 +20,9 @@ public class Constants {
     //Runner Constants
     public static final Vector2 RUNNER_EYE_POSITION = new Vector2(250,0);
     public static final float RUNNER_EYE_HEIGHT = 40f;
-    public static final float RUNNER_STANCE_WIDTH = 19.0f;
+    public static final float RUNNER_STANCE_WIDTH = 10f;
     public static final float RUNNER_HEIGHT = 23.0f;
-    public static final float RUNNER_MOVE_SPEED = 60;
+    public static final float RUNNER_MOVE_SPEED = 100;
 
     public static final String RUNNING_1 = "trump1";
     public static final String RUNNING_2 = "trump2";
@@ -37,7 +37,7 @@ public class Constants {
 
     //PowerUp
     public static final String POWERUP_SPRITE = "chilito";
-    public static final Vector2 POWERUP_CENTER = new Vector2(0, 0);
+    public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
 
     //
     public static final String FONT_FILE = "font/header.fnt";
@@ -54,11 +54,11 @@ public class Constants {
 
     //
     public static final String BULLRING = "bullring";
-    public static final Vector2 BULLRING_CENTER = new Vector2(200, 0);
-    public static final float BULLRING_RADIUS = 12;
+    public static final Vector2 BULLRING_CENTER = new Vector2(0, 0);
+    public static final float BULLRING_RADIUS = 170;
 
     //
-    public static final float BULL_MOVE_SPEED = 61;
+    public static final float BULL_MOVE_SPEED = 100;
     public static final String BULL_1 = "bull1";
     public static final String BULL_2 = "bull2";
     public static final String BULL_3 = "bull3";

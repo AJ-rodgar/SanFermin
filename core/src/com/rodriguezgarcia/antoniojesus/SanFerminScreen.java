@@ -44,7 +44,7 @@ public class SanFerminScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE,Constants.WORLD_SIZE);
         level = LevelLoader.load(difficulty);
-        chaseCam = new ChaseCam(viewport.getCamera(), level.getRunner());
+        chaseCam = new ChaseCam(viewport.getCamera(), level.getRunner(), level.getBull());
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
         hud = new HUD();
