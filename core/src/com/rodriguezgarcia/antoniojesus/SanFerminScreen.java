@@ -20,8 +20,6 @@ import com.rodriguezgarcia.antoniojesus.utils.Constants;
 import com.rodriguezgarcia.antoniojesus.utils.Enums;
 import com.rodriguezgarcia.antoniojesus.utils.LevelLoader;
 
-import java.sql.Time;
-
 public class SanFerminScreen extends ScreenAdapter {
 
     public SpriteBatch batch;
@@ -121,9 +119,10 @@ public class SanFerminScreen extends ScreenAdapter {
             if (!end) {
                 time = System.nanoTime();
                 end = true;
+                bgmusic.dispose();
             }
 
-            bgmusic.dispose();
+
             gameOverOverlay.render(batch);
 
             long millis = TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(time));
@@ -137,9 +136,9 @@ public class SanFerminScreen extends ScreenAdapter {
             if (!end) {
                 time = System.nanoTime();
                 end = true;
+                bgmusic.dispose();
             }
 
-            bgmusic.dispose();
             victoryOverlay.render(batch);
 
             long millis = TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(time));
