@@ -2,6 +2,7 @@ package com.rodriguezgarcia.antoniojesus.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -135,6 +136,8 @@ public class Runner {
 
             if (runnerBounds.overlaps(obstacleBounds)) {
                 level.getRunner().obstacle();
+                Sound obstacleSound = Gdx.audio.newSound(Gdx.files.internal("sounds/obstacle.mp3"));
+                obstacleSound.play();
                 obstacles.removeIndex(i);
             }
         }
@@ -155,6 +158,8 @@ public class Runner {
 
             if (runnerBounds.overlaps(powerupBounds)) {
                 level.getRunner().powerUp();
+                Sound powerUpSound = Gdx.audio.newSound(Gdx.files.internal("sounds/powerup.mp3"));
+                powerUpSound.play();
                 powerups.removeIndex(i);
             }
         }
@@ -194,6 +199,11 @@ public class Runner {
                 Constants.BULL_STANCE_WIDTH,
                 Constants.BULL_HEIGHT
         );
+
+        if (!level.gameover && runnerBounds.overlaps(bullBounds)) {
+            Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("sounds/lose.mp3"));
+            loseSound.play();
+        }
 
         return runnerBounds.overlaps(bullBounds);
     }
@@ -246,6 +256,11 @@ public class Runner {
                 Constants.BULLRING_RADIUS,
                 Constants.BULLRING_RADIUS
         );
+
+        if (!level.victory && runnerBounds.overlaps(bullBounds)) {
+            Sound winSound = Gdx.audio.newSound(Gdx.files.internal("sounds/win.mp3"));
+            winSound.play();
+        }
 
         return runnerBounds.overlaps(bullBounds);
     }

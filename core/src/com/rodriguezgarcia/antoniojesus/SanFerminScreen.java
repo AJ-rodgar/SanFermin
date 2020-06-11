@@ -4,6 +4,8 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -29,6 +31,7 @@ public class SanFerminScreen extends ScreenAdapter {
     public VictoryOverlay victoryOverlay;
     public GameOverOverlay gameOverOverlay;
     public OnScreenControls onScreenControls;
+    private Music bgmusic;
 
 
     public SanFerminScreen(SanFerminGame game, Enums.Difficulty difficulty){
@@ -55,6 +58,8 @@ public class SanFerminScreen extends ScreenAdapter {
             Gdx.input.setInputProcessor(onScreenControls);
         }
 
+        bgmusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/song.mp3"));
+        bgmusic.play();
     }
 
     private boolean onMobile() {
@@ -108,10 +113,13 @@ public class SanFerminScreen extends ScreenAdapter {
 
         if (level.gameover) {
 
+            bgmusic.dispose();
             gameOverOverlay.render(batch);
+
 
         } else if (level.victory) {
 
+            bgmusic.dispose();
             victoryOverlay.render(batch);
 
         }
