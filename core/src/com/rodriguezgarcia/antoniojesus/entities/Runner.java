@@ -27,7 +27,7 @@ public class Runner {
 
     public boolean jumpButtonPressed;
 
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
 
     private Vector2 spawnPosition;
     private Vector2 position;
@@ -46,7 +46,7 @@ public class Runner {
         position = new Vector2();
         velocity = new Vector2();
         lastFramePosition = new Vector2();
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
         init();
     }
 
@@ -68,7 +68,7 @@ public class Runner {
                 position,
                 Constants.RUNNER_EYE_POSITION);
 
-        batch.end();
+        /*batch.end();
 
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -76,7 +76,7 @@ public class Runner {
         shapeRenderer.rect(position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,position.y + 10, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
         shapeRenderer.end();
 
-        batch.begin();
+        batch.begin();*/
 
     }
 
@@ -233,11 +233,11 @@ public class Runner {
     }
 
     private void obstacle(){
-        velocity.x -= 10;
+        velocity.x -= 5;
     }
 
     private void powerUp(){
-        velocity.x += 15;
+        velocity.x += 2.5;
     }
 
     public boolean comeBullring() {

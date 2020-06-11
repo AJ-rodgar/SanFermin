@@ -13,20 +13,20 @@ import com.rodriguezgarcia.antoniojesus.utils.Utils;
 public class PowerUp {
 
     public Vector2 position;
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
     Level level;
 
     public PowerUp(Vector2 position, Level level) {
         this.position = position;
         this.level = level;
-        shapeRenderer=new ShapeRenderer();
+        //shapeRenderer=new ShapeRenderer();
     }
 
     public void render(SpriteBatch batch) {
         final TextureRegion region = Assets.instance.powerUpAssets.powerup;
         Utils.drawTextureRegion(batch, region, position, Constants.POWERUP_CENTER);
 
-        batch.end();
+        /*batch.end();
 
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -34,7 +34,7 @@ public class PowerUp {
         shapeRenderer.rect(position.x,position.y, 30,25);
         shapeRenderer.end();
 
-        batch.begin();
+        batch.begin();*/
     }
 
 }

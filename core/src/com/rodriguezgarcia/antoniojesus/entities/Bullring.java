@@ -13,13 +13,13 @@ import com.rodriguezgarcia.antoniojesus.utils.Utils;
 public class Bullring {
 
     public final Vector2 position;
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
     Level level;
 
     public Bullring(Vector2 position, Level level) {
         this.position = position;
         this.level = level;
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
     }
 
     public void render(SpriteBatch batch) {
@@ -27,7 +27,7 @@ public class Bullring {
         final TextureRegion region = Assets.instance.bullringAssets.bullring;
         Utils.drawTextureRegion(batch, region, position, Constants.BULLRING_CENTER);
 
-        batch.end();
+        /*batch.end();
 
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -35,6 +35,6 @@ public class Bullring {
         shapeRenderer.rect(position.x,position.y, Constants.BULLRING_RADIUS,Constants.BULLRING_RADIUS);
         shapeRenderer.end();
 
-        batch.begin();
+        batch.begin();*/
     }
 }

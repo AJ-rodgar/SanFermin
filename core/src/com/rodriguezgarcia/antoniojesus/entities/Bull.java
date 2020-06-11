@@ -24,14 +24,14 @@ public class Bull {
     private float runtime;
 
     Level level;
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
 
     public Bull(Vector2 spawnPosition, Level level){
         this.spawnPosition = spawnPosition;
         position = new Vector2();
         velocity = new Vector2();
         init();
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
         this.level = level;
     }
 
@@ -75,7 +75,7 @@ public class Bull {
                 Constants.BULL_EYE_POSITION);
 
 
-        batch.end();
+        /*batch.end();
 
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -83,7 +83,7 @@ public class Bull {
         shapeRenderer.rect(position.x + Constants.BULL_STANCE_WIDTH ,position.y + 10, Constants.BULL_STANCE_WIDTH,Constants.BULL_HEIGHT);
         shapeRenderer.end();
 
-        batch.begin();
+        batch.begin();*/
     }
 
     private void run() {

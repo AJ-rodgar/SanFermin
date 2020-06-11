@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rodriguezgarcia.antoniojesus.overlays.GameOverOverlay;
 import com.rodriguezgarcia.antoniojesus.overlays.HUD;
@@ -18,6 +19,8 @@ import com.rodriguezgarcia.antoniojesus.utils.ChaseCam;
 import com.rodriguezgarcia.antoniojesus.utils.Constants;
 import com.rodriguezgarcia.antoniojesus.utils.Enums;
 import com.rodriguezgarcia.antoniojesus.utils.LevelLoader;
+
+import java.sql.Time;
 
 public class SanFerminScreen extends ScreenAdapter {
 
@@ -32,6 +35,8 @@ public class SanFerminScreen extends ScreenAdapter {
     public GameOverOverlay gameOverOverlay;
     public OnScreenControls onScreenControls;
     private Music bgmusic;
+    private boolean end = false;
+    private long time;
 
 
     public SanFerminScreen(SanFerminGame game, Enums.Difficulty difficulty){
@@ -87,7 +92,7 @@ public class SanFerminScreen extends ScreenAdapter {
 
         level.render(batch);
 
-        hud.render(batch, Math.round(level.getBullring().position.x - Constants.BULLRING_RADIUS - level.getRunner().getPosition().x), Math.round(level.getRunner().getPosition().x - level.getBull().getPosition().x - Constants.ENEMY_COLLISION_RADIUS - 9));
+        hud.render(batch, Math.round(level.getBullring().position.x - (level.getRunner().getPosition().x + Constants.RUNNER_STANCE_WIDTH / 2 + Constants.RUNNER_STANCE_WIDTH)), Math.round(level.getRunner().getPosition().x + Constants.RUNNER_STANCE_WIDTH/2 - (level.getBull().getPosition().x + Constants.BULL_STANCE_WIDTH*2)));
 
         if (onMobile()) {
             onScreenControls.render(batch);
@@ -113,15 +118,40 @@ public class SanFerminScreen extends ScreenAdapter {
 
         if (level.gameover) {
 
+            if (!end) {
+                time = System.nanoTime();
+                end = true;
+            }
+
             bgmusic.dispose();
             gameOverOverlay.render(batch);
+
+            long millis = TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(time));
+            if (millis > 5000) {
+                game.showLevelScreen();
+            }
 
 
         } else if (level.victory) {
 
+            if (!end) {
+                time = System.nanoTime();
+                end = true;
+            }
+
             bgmusic.dispose();
             victoryOverlay.render(batch);
 
+            long millis = TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(time));
+            if (millis > 5000) {
+                if (difficulty.equals(Enums.Difficulty.EASY)) {
+                    game.showSanFerminScreen(Enums.Difficulty.MEDIUM);
+                } else if (difficulty.equals(Enums.Difficulty.MEDIUM)) {
+                    game.showSanFerminScreen(Enums.Difficulty.HARD);
+                } else {
+                    game.showLevelScreen();
+                }
+            }
         }
     }
 }

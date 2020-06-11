@@ -14,7 +14,7 @@ public class Obstacle {
     public final float left;
     public final float right;
 
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
     Level level;
 
     public Obstacle(float left, float top, float width, float height, Level level) {
@@ -23,7 +23,7 @@ public class Obstacle {
         this.left = left;
         this.right = left + width;
         this.level = level;
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
     }
 
     public void render(SpriteBatch batch) {
@@ -31,7 +31,7 @@ public class Obstacle {
         final float height = top - bottom;
         Assets.instance.obstacleAssets.obstacleNinePatch.draw(batch, left, bottom, width, height);
 
-        batch.end();
+        /*batch.end();
 
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -42,6 +42,6 @@ public class Obstacle {
                 top - bottom);
         shapeRenderer.end();
 
-        batch.begin();
+        batch.begin();*/
     }
 }
