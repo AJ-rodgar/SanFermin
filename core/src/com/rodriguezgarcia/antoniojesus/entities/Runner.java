@@ -74,7 +74,7 @@ public class Runner {
         shapeRenderer.setProjectionMatrix(level.viewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,position.y + 10, Constants.RUNNER_STANCE_WIDTH,Constants.RUNNER_HEIGHT);
+        shapeRenderer.rect(position.x + Constants.RUNNER_STANCE_WIDTH / 2 ,position.y + 10, Constants.RUNNER_STANCE_WIDTH / 2,Constants.RUNNER_HEIGHT);
         shapeRenderer.end();
 
         batch.begin();*/
@@ -109,6 +109,13 @@ public class Runner {
                 Constants.RUNNER_HEIGHT
         );
 
+        Rectangle runnerBoundsObstacle = new Rectangle(
+                position.x + Constants.RUNNER_STANCE_WIDTH / 2,
+                position.y + 10,
+                Constants.RUNNER_STANCE_WIDTH / 2,
+                Constants.RUNNER_HEIGHT
+        );
+
         if (Gdx.input.isKeyPressed(Input.Keys.UP) || jumpButtonPressed){
             switch (jumpState) {
                 case GROUNDED:
@@ -135,7 +142,7 @@ public class Runner {
                     obstacle.top - obstacle.bottom
             );
 
-            if (runnerBounds.overlaps(obstacleBounds)) {
+            if (runnerBoundsObstacle.overlaps(obstacleBounds)) {
                 level.getRunner().obstacle();
                 Music obstacleSound = Gdx.audio.newMusic(Gdx.files.internal("sounds/obstacle.mp3"));
                 obstacleSound.play();
