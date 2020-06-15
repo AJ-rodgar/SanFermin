@@ -78,12 +78,12 @@ public class Constants {
     public static final Color MEDIUM_COLOR = new Color(0.8f, 0.5f,0, 1);
     public static final Color HARD_COLOR = new Color(0.7f, 0f,0, 1);
 
-    public static final float DIFFICULTY_WORLD_SIZE = 480;
+    public static final float DIFFICULTY_WORLD_SIZE = 480f;
     public static final float DIFFICULTY_BUBBLE_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
 
-    public static final Vector2 EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 4, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 3 / 4, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 3, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 2/3, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE, DIFFICULTY_WORLD_SIZE / 2);
 
     public static final String EASY_LABEL = "EASY";
     public static final String MEDIUM_LABEL = "MEDIUM";
